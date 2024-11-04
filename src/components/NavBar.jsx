@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import plademaimglogo from "../assets/pladema.png";
 const NavBar = () => {
   return (
-    <div className="container mx-auto w-1/2 flex justify-between items-center bg-white rounded-full shadow-2xl p-2 m-4">
+    <div className="container mx-[25%] w-1/2 flex justify-between absolute items-center bg-white rounded-full shadow-2xl p-2 m-4">
       <div>
         <img src={plademaimglogo} className="h-10" alt="plademalogo" />
       </div>

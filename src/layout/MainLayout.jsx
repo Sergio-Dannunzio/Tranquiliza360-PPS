@@ -6,10 +6,10 @@ const MainLayout = () => {
       <nav>
         <NavBar />
       </nav>
-      <main className="container flex items-center justify-center">
+      <main className="flex flex-col  items-center justify-center">
         <Outlet></Outlet>
       </main>
-      <footer className="container text-center">Footer</footer>
+      <footer className="text-center">Footer</footer>
     </>
   );
 };
