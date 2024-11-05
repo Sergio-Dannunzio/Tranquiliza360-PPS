@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.section-carrusel{
+    background: rgb(255, 255, 255);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 248, 230, 1) 25%, rgba(255, 245, 217, 1) 75%, rgba(255, 255, 255, 1) 100%);
+    
+}
+.carrusel{
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(calc(-400px * 3.44 - 0.5rem * 10));
+    }
+}
+
+.animate-scroll {
+    animation: scroll 30s linear infinite;
+    animation-play-state: running;
+}
+
+.animate-scroll:hover {
+    animation-play-state: paused;
+}

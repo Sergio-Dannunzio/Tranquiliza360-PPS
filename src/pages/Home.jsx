@@ -1,4 +1,7 @@
 import hero from "../assets/heroImg.png";
+import Card from "../components/Card";
+import caracteristicas from "../utils/CardData";
+console.log(caracteristicas);
 const Home = () => {
   return (
     <>
@@ -10,7 +13,7 @@ const Home = () => {
         <div className="bg-[#1AB6EF] w-[300px] mt-3 h-[10px]"></div>
         <h1 className="text-2xl font-semibold">Tecnología que cuida de ti</h1>
       </div>
-      <div className="w-[100vh]">
+      <div className="w-[100vh] py-8">
         <h1 className="text-4xl py-8 mt-4 font-bold">
           Conéctate a la calma, transforma tu bienestar
         </h1>
@@ -30,6 +33,15 @@ const Home = () => {
           <br></br>
           Tu viaje hacia la calma empieza aquí.
         </p>
+      </div>
+      <div className="h-[600px] section-carrusel w-[100%] flex justify-center items-center">
+        <div className="overflow-hidden carrusel w-[100vh]">
+          <div className="flex  animate-scroll">
+            {caracteristicas.map((card) => (
+              <Card card={card} key={card.title} />
+            ))}
+          </div>
+        </div>
       </div>
     </>
   );
