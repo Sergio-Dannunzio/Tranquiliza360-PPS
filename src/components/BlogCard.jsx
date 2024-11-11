@@ -1,16 +1,24 @@
 import React from "react";
-import blogs from "../utils/BlogData";
-
+import { useNavigate } from 'react-router-dom';
 
 const BlogCard = ({
     img,
     title,
     date,
+    id
   }) => {
+
+    const navigate = useNavigate();
+
+    const handleShowDetails = (num) => {
+      navigate(`/blog/${num}`);
+    };
+
+
   return (
     <>
-        <div className="flex flex-col items-center my-8 xl:w-[400px]">
-            <div className="mx-4 flex flex-col justify-center text-center items-center relative">
+        <div onClick={() =>handleShowDetails(id)} className="flex flex-col items-center my-8 xl:w-[400px]">
+            <div  className="mx-4 flex flex-col justify-center text-center items-center relative">
                 <img
                 src={`/assets/${img}`}
                 alt={title}

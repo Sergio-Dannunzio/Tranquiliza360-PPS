@@ -12,6 +12,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
+import BlogsDetail from "../pages/BlogsDetail";
 
 
 function AppRoutes() {
@@ -38,6 +39,7 @@ function AppRoutes() {
         <Route path="/home" element={<Home />} />
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/blog" element={<Blogs />} />
+        <Route path="/blog/:id" element={<BlogsDetail />} />
       </Routes>
       {shouldShowHeaderFooter() && <Footer />}
     </>
