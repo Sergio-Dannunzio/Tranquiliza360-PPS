@@ -1,41 +1,10 @@
 import hero from "../assets/heroImg.png";
 import Card from "../components/Card";
 import caracteristicas from "../utils/CardData";
-import video1 from "../assets/vid_paisaje.mp4";
-import video2 from "../assets/vid_videos.mp4";
-import video3 from "../assets/vid_entornos.mp4";
+import videos from "../utils/VideoData";
 import Video from "../components/Video";
-import { useEffect, useState } from "react";
 console.log(caracteristicas);
 const Home = () => {
-  const videos = [
-    {
-      video: video1,
-      texto:
-        "Paisajes panorámicos en 360° que promueven el bienestar cognitivo de las personas mayores",
-    },
-    {
-      video: video2,
-      texto:
-        "Videos de paisajes, paseos panorámicos en 360° que promueven el bienestar cognitivo de las personas mayores",
-    },
-    {
-      video: video3,
-      texto:
-        "Ejercicios que simulan actividades de la vida cotidiana, ideales para fomentar la práctica y adherencia al ejercicio físico.",
-    },
-  ];
-  const [videoIndex, setVideoIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setVideoIndex((prevIndex) => (prevIndex + 1) % videos.length); // Rotar entre los videos (ciclo)
-    }, 5000); // Cambiar cada 5 segundos
-
-    // Limpiar el temporizador cuando el componente se desmonte
-    return () => clearInterval(timer);
-  }, [videoIndex]); // El efecto solo se ejecuta una vez cuando el componente se monta
-
   return (
     <>
       <div
@@ -85,11 +54,18 @@ const Home = () => {
           casa, explora una ciudad lejana o entrena en un entorno virtual
           interactivo.
         </p>
-        <Video
-          key={videoIndex}
-          video={videos[videoIndex].video}
-          texto={videos[videoIndex].texto}
-        />
+        <div className="flex flex-row mb-32 justify-between gap-8 w-[100vh]">
+          {videos.map((video, i) => {
+            return (
+              <Video
+                key={i}
+                video={video.video}
+                title={video.title}
+                texto={video.texto}
+              />
+            );
+          })}
+        </div>
       </div>
     </>
   );
