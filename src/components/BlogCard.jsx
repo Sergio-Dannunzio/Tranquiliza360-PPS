@@ -17,7 +17,7 @@ const BlogCard = ({
 
   return (
     <>
-        <div onClick={() =>handleShowDetails(id)} className="flex flex-col items-center my-8 xl:w-[400px]">
+        <div onClick={() =>handleShowDetails(id)} className="flex flex-col items-center my-8 xl:w-[400px] cursor-pointer">
             <div  className="mx-4 flex flex-col justify-center text-center items-center relative">
                 <img
                 src={`/assets/${img}`}
