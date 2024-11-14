@@ -50,3 +50,12 @@
         rgba(255, 255, 255, 1) 100%);
 
 }
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

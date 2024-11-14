@@ -16,7 +16,7 @@ const Video = ({ video, texto, title }) => {
   };
   return (
     <div
-      className="shadow-2xl  w-1/3 rounded-xl h-60 hover:h-auto text-center transition-all duration-300 overflow-hidden hover:scale-[1.2] group"
+      className="shadow-xl  w-72 rounded-xl h-60 hover:h-auto text-center transition-all duration-300 overflow-hidden hover:scale-[1.2] group"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
