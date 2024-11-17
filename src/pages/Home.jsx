@@ -12,13 +12,13 @@ const Home = () => {
         className="flex flex-col justify-center items-center w-[100%] h-[80vh]"
         style={{ backgroundImage: `url(${hero})` }}
       >
-        <h1 className="text-3xl lg:text-6xl tracking-widest font-bold">
+        <h1 className="text-3xl font-bold tracking-widest lg:text-6xl">
           Tranquiliza.360°
         </h1>
         <div className="bg-[#1AB6EF] w-[200px] lg:w-[300px] mt-3 h-[5px] lg:h-[10px]"></div>
         <h1 className="text-xl font-semibold">Tecnología que cuida de ti</h1>
       </div>
-      <div className=" mx-auto pt-8">
+      <div className="pt-8 mx-auto ">
         <h1 className="text-2xl py-8 px-3 mt-4 font-bold mx-auto w-[100%] lg:text-4xl lg:w-[100vh]">
           Conéctate a la calma, transforma tu bienestar
         </h1>
@@ -41,15 +41,15 @@ const Home = () => {
       </div>
       <div className="h-[700px] section-carrusel w-[100%] flex justify-center items-center">
         <div className="overflow-hidden carrusel w-[100vh]">
-          <div className="flex  animate-scroll">
+          <div className="flex animate-scroll">
             {caracteristicas.map((card) => (
               <Card card={card} key={card.title} />
             ))}
           </div>
         </div>
       </div>
-      <div className="flex flex-col justify-center items-center">
-        <h1 className="text-4xl text-center mt-4 font-bold">
+      <div className="flex flex-col items-center justify-center">
+        <h1 className="mt-4 text-4xl font-bold text-center">
           Mejora tu mente desde donde estés.
         </h1>
         <p className="text-center text-xl py-6 w-[100%] lg:w-[100vh]">
