@@ -57,7 +57,7 @@ const Home = () => {
           casa, explora una ciudad lejana o entrena en un entorno virtual
           interactivo.
         </p>
-        <div className="w-full overflow-x-scroll no-scrollbar cursor-grab active:cursor-grabbing">
+        <div className="w-full overflow-x-scroll no-scrollbar ">
           <div className="flex flex-row  mx-auto justify-between py-12 px-10 gap-7 w-[100vh]">
             {videos.map((video, i) => (
               <Video

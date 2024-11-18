@@ -1,25 +1,99 @@
 import { NavLink } from "react-router-dom";
 import plademaimglogo from "../assets/pladema.png";
+import { useState } from "react";
 
 const NavBar = () => {
+  const [showMenu, setShowMenu] = useState(false);
   return (
-    <div className="container mx-[25%] w-1/2 flex justify-between absolute items-center bg-white rounded-full shadow-2xl p-2 m-4">
-      <a href="https://www.pladema.net/" className="cursor-pointer">
-        <img src={plademaimglogo} className="h-10" alt="plademalogo" />
-      </a>
-      <NavLink to="/" className="">
-        Home
-      </NavLink>
-      <NavLink to="/contacto" className="">
-        Contacto
-      </NavLink>
-      <NavLink to="/blog" className="">
-        Blogs
-      </NavLink>
-      <NavLink to="/login" className="">
-        Iniciar sesión
-      </NavLink>
-    </div>
+    <>
+      <div className="container z-10 mx-[25%] w-1/2 hidden  lg:flex justify-between fixed items-center bg-white rounded-full shadow-2xl p-2 m-4">
+        <a
+          href="https://www.pladema.net/"
+          target="_blank"
+          className="cursor-pointer"
+        >
+          <img src={plademaimglogo} className="h-10" alt="plademalogo" />
+        </a>
+        <div>
+          <NavLink to="/" className="px-5">
+            Home
+          </NavLink>
+          <NavLink to="/contacto" className=" px-5">
+            Contacto
+          </NavLink>
+          <NavLink to="/blog" className=" px-5">
+            Blogs
+          </NavLink>
+        </div>
+        <NavLink to="/login" className="px-5">
+          Iniciar sesión
+        </NavLink>
+      </div>
+      <div className="lg:hidden flex h-16 fixed w-full items-center justify-between nav-bg z-10">
+        <a
+          href="https://www.pladema.net/"
+          target="_blank"
+          className="cursor-pointer"
+        >
+          <img src={plademaimglogo} className="h-10" alt="plademalogo" />
+        </a>
+        <button
+          className="flex flex-col  justify-center  items-center w-10 h-10 space-y-1 rounded focus:outline-none"
+          onClick={() => setShowMenu(!showMenu)}
+          aria-label="Toggle Menu"
+        >
+          <div
+            className={`h-1 w-8 bg-white rounded transform transition-transform 
+          ${showMenu ? "rotate-45 translate-y-2" : ""}`}
+          />
+          <div
+            className={`h-1 w-8 bg-white rounded transition-opacity ${
+              showMenu ? "opacity-0" : ""
+            }`}
+          />
+          <div
+            className={`h-1 w-8 bg-white rounded transform transition-transform ${
+              showMenu ? "-rotate-45 -translate-y-2" : ""
+            }`}
+          />
+        </button>
+        {showMenu ? (
+          <div
+            className={`flex flex-col text-white  items-end gap-10 nav-bg-menu absolute left-[100%] top-16 w-[170px] h-[100vh] shadow-md ${
+              showMenu ? "translate-x-[-100%]" : ""
+            }`}
+          >
+            <NavLink
+              to="/"
+              className="p-4 underline text-2xl hover:text-gray-800"
+            >
+              Home
+            </NavLink>
+            <NavLink
+              to="/contacto"
+              className="p-4 text-2xl underline hover:text-gray-800"
+            >
+              Contacto
+            </NavLink>
+            <NavLink
+              to="/blog"
+              className="p-4 underline text-2xl hover:text-gray-800"
+            >
+              Blogs
+            </NavLink>
+            <NavLink
+              to="/login"
+              className="p-4 text-2xl underline hover:text-gray-800"
+            >
+              Iniciar sesión
+            </NavLink>
+          </div>
+        ) : null}
+      </div>
+      {showMenu ? (
+        <div className="bg-black w-full h-full fixed opacity-60 lg:hidden"></div>
+      ) : null}
+    </>
   );
 };
 
