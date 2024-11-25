@@ -4,6 +4,7 @@ import { useState } from "react";
 
 const NavBar = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const token = localStorage.getItem("token");
   return (
     <>
       <div className="container z-10 mx-[25%] w-1/2 hidden  lg:flex justify-between fixed items-center bg-white rounded-full shadow-2xl p-2 m-4">
@@ -24,6 +25,11 @@ const NavBar = () => {
           <NavLink to="/blog" className=" px-5">
             Blogs
           </NavLink>
+          {token && (
+            <NavLink to="/admin" className="px-5">
+              admin
+            </NavLink>
+          )}
         </div>
         <NavLink to="/login" className="px-5">
           Iniciar sesión

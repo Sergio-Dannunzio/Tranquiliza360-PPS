@@ -3,8 +3,6 @@ import Card from "../components/Card";
 import caracteristicas from "../utils/CardData";
 import videos from "../utils/VideoData";
 import Video from "../components/Video";
-import { useRef } from "react";
-console.log(caracteristicas);
 const Home = () => {
   return (
     <>

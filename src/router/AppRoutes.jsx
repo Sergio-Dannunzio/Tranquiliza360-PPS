@@ -6,14 +6,13 @@ import {
 } from "react-router-dom";
 import Home from "../pages/Home";
 import Blogs from "../pages/Blogs";
-import NotFound from "../pages/NotFound";
+import AministrarBlog from "../pages/AministrarBlog";
 import Contacto from "../pages/Contacto";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import BlogsDetail from "../pages/BlogsDetail";
-
 
 function AppRoutes() {
   const location = useLocation();
@@ -23,10 +22,13 @@ function AppRoutes() {
     /^\/home$/,
     /^\/blog$/,
     /^\/contacto$/,
+    /^\/admin$/,
   ];
 
   const shouldShowHeaderFooter = () => {
-    return showHeaderFooterRoutes.some((pattern) => pattern.test(location.pathname));
+    return showHeaderFooterRoutes.some((pattern) =>
+      pattern.test(location.pathname)
+    );
   };
 
   return (
@@ -40,6 +42,7 @@ function AppRoutes() {
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/blog" element={<Blogs />} />
         <Route path="/blog/:id" element={<BlogsDetail />} />
+        <Route path="/admin" element={<AministrarBlog />} />
       </Routes>
       {shouldShowHeaderFooter() && <Footer />}
     </>
