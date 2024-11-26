@@ -13,6 +13,7 @@ import Register from "../pages/Register";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import BlogsDetail from "../pages/BlogsDetail";
+import PrivateRoute from "./PrivateRoute";
 
 function AppRoutes() {
   const location = useLocation();
@@ -42,7 +43,9 @@ function AppRoutes() {
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/blog" element={<Blogs />} />
         <Route path="/blog/:id" element={<BlogsDetail />} />
-        <Route path="/admin" element={<AministrarBlog />} />
+        <Route element={<PrivateRoute />}>
+          <Route path="/admin" element={<AministrarBlog />} />
+        </Route>
       </Routes>
       {shouldShowHeaderFooter() && <Footer />}
     </>

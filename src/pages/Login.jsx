@@ -5,21 +5,20 @@ import { FaInstagram } from "react-icons/fa";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../services/authService';
+import { useAuth } from '../context/AuthProvider';
 
 const Login = () => {
   
   const [email, setMail] = useState("");
   const [password, setPass] = useState("");
+  const { login } = useAuth();
 
   const navigate = useNavigate();
-
-  const handleLoginMethodClick = () => {
-    navigate("/home");
-  };
 
   const handleLogin = async (email, password) => {
     try {
       const response = await loginUser({ email: email, password });
+      login(response.token);
       return response.token;
     } catch (error) {
       console.error("Error durante el inicio de sesión:", error);
@@ -36,7 +35,7 @@ const Login = () => {
     }
   
     try {
-      const token = await handleLogin(email, password); // Valores desde los estados
+      const token = await handleLogin(email, password);
       if (token) {
         console.log(token)
         navigate("/home");
