@@ -1,10 +1,20 @@
 import { NavLink } from "react-router-dom";
 import plademaimglogo from "../assets/pladema.png";
-import { useState } from "react";
+import { useState,useEffect } from "react";
+import { useAuth } from '../context/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
 const NavBar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const token = localStorage.getItem("token");
+  const { isAuthenticated, logout} = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logout();
+    navigate("/home");
+  };
+
   return (
     <>
       <div className="container z-10 mx-[25%] w-1/2 hidden  lg:flex justify-between fixed items-center bg-white rounded-full shadow-2xl p-2 m-4">
@@ -25,15 +35,22 @@ const NavBar = () => {
           <NavLink to="/blog" className=" px-5">
             Blogs
           </NavLink>
-          {token && (
+          {isAuthenticated && (
             <NavLink to="/admin" className="px-5">
-              admin
+              Admin
             </NavLink>
           )}
         </div>
+        {!isAuthenticated && (
         <NavLink to="/login" className="px-5">
           Iniciar sesión
         </NavLink>
+        )}
+        {isAuthenticated && (
+        <button onClick={handleLogout} className="px-5">
+          Log out
+        </button>
+        )}
       </div>
       <div className="lg:hidden flex h-16 fixed w-full items-center justify-between nav-bg z-10">
         <a
@@ -87,12 +104,19 @@ const NavBar = () => {
             >
               Blogs
             </NavLink>
+            {isAuthenticated && (
+            <NavLink to="/admin" className="p-4 underline text-2xl hover:text-gray-800">
+              Admin
+            </NavLink>
+          )}
+          {!isAuthenticated && (
             <NavLink
               to="/login"
               className="p-4 text-2xl underline hover:text-gray-800"
             >
               Iniciar sesión
             </NavLink>
+            )}
           </div>
         ) : null}
       </div>
