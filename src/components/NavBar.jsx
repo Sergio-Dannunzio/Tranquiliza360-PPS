@@ -1,13 +1,12 @@
 import { NavLink } from "react-router-dom";
 import plademaimglogo from "../assets/pladema.png";
-import { useState,useEffect } from "react";
-import { useAuth } from '../context/AuthProvider';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { useAuth } from "../context/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
   const [showMenu, setShowMenu] = useState(false);
-  const token = localStorage.getItem("token");
-  const { isAuthenticated, logout} = useAuth();
+  const { isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -42,14 +41,14 @@ const NavBar = () => {
           )}
         </div>
         {!isAuthenticated && (
-        <NavLink to="/login" className="px-5">
-          Iniciar sesión
-        </NavLink>
+          <NavLink to="/login" className="px-5">
+            Iniciar sesión
+          </NavLink>
         )}
         {isAuthenticated && (
-        <button onClick={handleLogout} className="px-5">
-          Log out
-        </button>
+          <button onClick={handleLogout} className="px-5">
+            Log out
+          </button>
         )}
       </div>
       <div className="lg:hidden flex h-16 fixed w-full items-center justify-between nav-bg z-10">
@@ -105,17 +104,20 @@ const NavBar = () => {
               Blogs
             </NavLink>
             {isAuthenticated && (
-            <NavLink to="/admin" className="p-4 underline text-2xl hover:text-gray-800">
-              Admin
-            </NavLink>
-          )}
-          {!isAuthenticated && (
-            <NavLink
-              to="/login"
-              className="p-4 text-2xl underline hover:text-gray-800"
-            >
-              Iniciar sesión
-            </NavLink>
+              <NavLink
+                to="/admin"
+                className="p-4 underline text-2xl hover:text-gray-800"
+              >
+                Admin
+              </NavLink>
+            )}
+            {!isAuthenticated && (
+              <NavLink
+                to="/login"
+                className="p-4 text-2xl underline hover:text-gray-800"
+              >
+                Iniciar sesión
+              </NavLink>
             )}
           </div>
         ) : null}

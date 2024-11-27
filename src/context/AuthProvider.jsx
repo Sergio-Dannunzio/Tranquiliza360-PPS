@@ -1,21 +1,21 @@
-import { createContext, useState, useContext, useEffect } from 'react';
-import { loginUser } from '../services/authService';
-import jwtDecode from 'jwt-decode';
+import { createContext, useState, useContext, useEffect } from "react";
+import { loginUser } from "../services/authService";
+import jwtDecode from "jwt-decode";
 
 const AuthContext = createContext(undefined);
 
 export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(localStorage.getItem('token'));
+  const [token, setToken] = useState(localStorage.getItem("token"));
 
   const login = (token) => {
     setToken(token);
-    localStorage.setItem('token', token);
+    localStorage.setItem("token", token);
   };
 
   const logout = () => {
     setToken(null);
-    localStorage.removeItem('token');
-    console.log('Se deslogueo correctamente');
+    localStorage.removeItem("token");
+    console.log("Se deslogueo correctamente");
   };
 
   const isTokenExpired = (token) => {
@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }) => {
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
 };
