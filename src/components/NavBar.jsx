@@ -16,7 +16,7 @@ const NavBar = () => {
 
   return (
     <>
-      <div className="container z-10 mx-[25%] w-1/2 hidden  lg:flex justify-between fixed items-center bg-white rounded-full shadow-2xl p-2 m-4">
+      <div className="container z-10 lg:mx-[10%] xl:mx-[20%] lg:w-[80%] xl:w-[60%] hidden  lg:flex justify-between fixed items-center bg-white rounded-full shadow-2xl p-2 m-4">
         <a
           href="https://www.pladema.net/"
           target="_blank"
