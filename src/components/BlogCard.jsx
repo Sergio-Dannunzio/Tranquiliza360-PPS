@@ -18,11 +18,11 @@ const BlogCard = ({
   return (
     <>
         <div onClick={() =>handleShowDetails(id)} className="flex flex-col items-center my-8 xl:w-[400px] cursor-pointer">
-            <div  className="mx-4 flex flex-col justify-center text-center items-center relative">
+            <div  className="relative flex flex-col items-center justify-center mx-4 text-center">
                 <img
-                src={`/assets/${img}`}
+                src={`${img}`}
                 alt={title}
-                className="w-auto object-cover"
+                className="object-cover w-auto"
                 />
                 <h1 className="text-[#ffff] absolute bottom-10 mx-2">{title}</h1>
                 <hr className=" border-[#1C374D] w-full my-2" />
