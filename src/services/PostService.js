@@ -32,7 +32,7 @@ export const postPost = async (formData) => {
 
 export const deletePost = async (id) => {
   try {
-    const response = await fetch(`http://localhost:5000/api/posts/${id}`, {
+    const response = await fetch(`${API_URL}/posts/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -47,7 +47,7 @@ export const deletePost = async (id) => {
 export const updatePost = async (id, formData) => {
   console.log(...formData.entries());
   try {
-    const response = await fetch(`http://localhost:5000/api/posts/${id}`, {
+    const response = await fetch(`${API_URL}/posts/${id}`, {
       method: "PUT",
       body: formData,
     });
