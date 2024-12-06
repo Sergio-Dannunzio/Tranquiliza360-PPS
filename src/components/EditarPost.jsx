@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 const EditarPost = ({ updatePost, post, setEdit }) => {
   const [title, setTitle] = useState(post.title);
+  const [autor, setAutor] = useState(post.autor);
   const [content, setContent] = useState(post.content);
   const [image, setImage] = useState(null);
   const handleSubmit = async (e) => {
@@ -10,6 +11,7 @@ const EditarPost = ({ updatePost, post, setEdit }) => {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
+    formData.append("autor", autor);
     if (image) {
       formData.append("image", image);
     }
@@ -32,6 +34,17 @@ const EditarPost = ({ updatePost, post, setEdit }) => {
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-semibold">Autor</label>
+            <input
+              type="text"
+              value={autor}
+              onChange={(e) => setAutor(e.target.value)}
               className="w-full p-2 border border-gray-300 rounded"
               required
             />

@@ -53,6 +53,8 @@ const AministrarBlog = () => {
                   ? post.content.slice(0, 100) + "..."
                   : post.content}
               </p>
+              <p>{post.createdAt}</p>
+              <p>{post.autor}</p>
               <div>
                 <button
                   onClick={() => handleDelete(post._id)}

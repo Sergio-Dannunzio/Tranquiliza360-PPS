@@ -1,5 +1,6 @@
 const API_URL = `https://tranquiliza360-pps-back.vercel.app/api`;
-
+//http://localhost:5000/api
+//https://tranquiliza360-pps-back.vercel.app/api
 export const getPost = async () => {
   try {
     const response = await fetch(`${API_URL}/posts/`);
@@ -36,9 +37,11 @@ export const deletePost = async (id) => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`, // Incluye el token si es necesario
+        //Authorization: `Bearer ${localStorage.getItem("token")}`, // Incluye el token si es necesario
       },
     });
+    console.log(response);
+    return response;
   } catch (err) {
     console.error("Error deleting post:", err);
   }
@@ -60,5 +63,15 @@ export const updatePost = async (id, formData) => {
     return data;
   } catch (err) {
     console.error("Error posting post:", err);
+  }
+};
+
+export const getPostById = async (id) => {
+  try {
+    const response = await fetch(`${API_URL}/posts/id/${id}`);
+    const data = await response.json();
+    return data;
+  } catch (err) {
+    console.error("Error deleting post:", err);
   }
 };

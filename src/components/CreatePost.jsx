@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 const CreatePost = ({ postPost, setCreate }) => {
   const [title, setTitle] = useState("");
+  const [autor, setAutor] = useState("");
   const [content, setContent] = useState("");
   const [image, setImage] = useState(null);
   const handleSubmit = async (e) => {
@@ -10,6 +11,7 @@ const CreatePost = ({ postPost, setCreate }) => {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
+    formData.append("autor", autor);
     if (image) {
       formData.append("image", image);
     }
@@ -17,8 +19,6 @@ const CreatePost = ({ postPost, setCreate }) => {
       postPost(formData);
     } catch (error) {
       console.error("Error al crear el post:", error);
-    } finally {
-      setCreate(false);
     }
   };
   return (
@@ -38,6 +38,16 @@ const CreatePost = ({ postPost, setCreate }) => {
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-semibold">Autor</label>
+            <input
+              type="text"
+              value={autor}
+              onChange={(e) => setAutor(e.target.value)}
               className="w-full p-2 border border-gray-300 rounded"
               required
             />
