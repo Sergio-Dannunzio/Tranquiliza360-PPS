@@ -22,6 +22,7 @@ function AppRoutes() {
     /^\/$/,
     /^\/home$/,
     /^\/blog$/,
+    /^\/blog\/[^/]+$/,
     /^\/contacto$/,
     /^\/admin$/,
   ];
