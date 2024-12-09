@@ -22,7 +22,7 @@ const BlogCard = ({
                 <img
                 src={`${img}`}
                 alt={title}
-                className="object-cover w-auto"
+                className="object-cover w-[368px] h-[285px]"
                 />
                 <h1 className="text-[#ffff] absolute bottom-10 mx-2">{title}</h1>
                 <hr className=" border-[#1C374D] w-full my-2" />
