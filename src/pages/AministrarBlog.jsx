@@ -48,12 +48,11 @@ const AministrarBlog = () => {
               {post.imageUrl && (
                 <img className="h-28" src={post.imageUrl} alt={post.imageUrl} />
               )}
-              <p className="text-sm text-gray-700">
-                {post.content.length > 100
-                  ? post.content.slice(0, 100) + "..."
-                  : post.content}
-              </p>
-              <p>{post.createdAt}</p>
+              <p
+                className="text-sm text-gray-700"
+                dangerouslySetInnerHTML={{ __html: post.content.slice(0, 100) }}
+              />
+              <p>{new Date(post.createdAt).toLocaleDateString("es-ES")}</p>
               <p>{post.autor}</p>
               <div>
                 <button

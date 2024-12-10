@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 const CreatePost = ({ postPost, setCreate }) => {
   const [title, setTitle] = useState("");
   const [autor, setAutor] = useState("");
@@ -53,17 +54,18 @@ const CreatePost = ({ postPost, setCreate }) => {
             />
           </div>
 
-          <div>
+          <div className="h-52">
             <label className="block text-sm font-semibold">Contenido</label>
-            <textarea
+            <ReactQuill
+              theme="snow"
               value={content}
-              onChange={(e) => setContent(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded"
+              onChange={setContent}
+              className="w-full h-40"
               required
             />
           </div>
 
-          <div>
+          <div className="">
             <label className="block text-sm font-semibold">Imagen</label>
             <input
               type="file"

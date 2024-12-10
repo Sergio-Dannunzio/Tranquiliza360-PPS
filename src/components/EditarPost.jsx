@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 const EditarPost = ({ updatePost, post, setEdit }) => {
   const [title, setTitle] = useState(post.title);
   const [autor, setAutor] = useState(post.autor);
@@ -50,13 +51,13 @@ const EditarPost = ({ updatePost, post, setEdit }) => {
             />
           </div>
 
-          <div>
-            <label className="block font-semibold">Contenido</label>
-            <textarea
+          <div className="h-52">
+            <label className="block text-sm font-semibold">Contenido</label>
+            <ReactQuill
+              theme="snow"
               value={content}
-              onChange={(e) => setContent(e.target.value)}
-              rows={8}
-              className="w-full p-2 border border-gray-300 rounded"
+              onChange={setContent}
+              className="w-full h-40"
               required
             />
           </div>

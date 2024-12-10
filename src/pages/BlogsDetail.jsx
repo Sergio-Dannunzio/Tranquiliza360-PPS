@@ -19,7 +19,7 @@ const BlogsDetail = () => {
     <div className="w-full flex flex-col justify-center">
       <h1>{post.title}</h1>
       <img src={post.imageUrl} alt={post.imageUrl} />
-      <p>{post.content}</p>
+      <p dangerouslySetInnerHTML={{ __html: post.content }}></p>
     </div>
   );
 };
