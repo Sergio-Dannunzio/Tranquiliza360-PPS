@@ -31,6 +31,16 @@ export const postPost = async (formData) => {
   }
 };
 
+export const getLatestPost = async (userId) => {
+  try {
+    const response = await fetch(`${API_URL}/posts/latest-post`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+  }
+};
+
 export const deletePost = async (id) => {
   try {
     const response = await fetch(`${API_URL}/posts/${id}`, {
