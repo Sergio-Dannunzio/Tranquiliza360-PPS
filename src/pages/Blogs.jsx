@@ -1,18 +1,23 @@
 import { useEffect, useState } from "react";
 import BlogCard from "../components/BlogCard";
-import blogs from "../utils/BlogData";
 import { useNavigate } from "react-router-dom";
-import { getLatestPost, getPost } from "../services/PostService";
+import {
+  getLatestPost,
+  getPost,
+  getPostPaginated,
+} from "../services/PostService";
+import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
 
 const Blogs = () => {
   const [latestPost, setLatestPost] = useState();
   const [posts, setPosts] = useState();
+  const [page, setPage] = useState(1);
+  const limit = 6;
   let formattedDate = "Fecha inválida";
+
   // Validar el valor de postDate
   if (latestPost) {
     const date = new Date(latestPost.createdAt);
-
-    // Verificar si la fecha es válida
     if (!isNaN(date.getTime())) {
       const dayShort = date.toLocaleDateString("es-ES", { weekday: "short" });
 
@@ -24,6 +29,7 @@ const Blogs = () => {
       })}`;
     }
   }
+
   const navigate = useNavigate();
 
   const handleShowDetails = (num) => {
@@ -31,22 +37,23 @@ const Blogs = () => {
   };
 
   useEffect(() => {
-    getPost().then((posts) => {
+    getPostPaginated(page, limit).then((posts) => {
       setPosts(posts);
     });
+    console.log(posts);
     getLatestPost().then((post) => {
       setLatestPost(post);
     });
-  }, []);
+  }, [page]);
 
   return (
     <>
-      <div className="flex flex-col  justify-center w-full">
+      <div className="flex flex-col  justify-center w-full font-montserrat">
         <div className="section-carrusel">
           {latestPost && (
             <div
               onClick={() => handleShowDetails(latestPost._id)}
-              className=" relative flex flex-col mx-2 mt-32 cursor-pointer md:mx-10 lg:mx-52 xl:mx-80"
+              className=" relative flex flex-col mx-2 my-32 cursor-pointer md:mx-10 lg:mx-52 xl:mx-80"
             >
               <img
                 src={latestPost.imageUrl}
@@ -64,21 +71,36 @@ const Blogs = () => {
             </div>
           )}
         </div>
-
-        <div className="grid items-center justify-center grid-cols-1 mt-24 md:grid-cols-2 xl:grid-cols-3 xl:mx-auto">
+        <div className="flex flex-col items-center">
           {posts ? (
-            posts.map((post) => (
-              <BlogCard
-                img={post.imageUrl}
-                title={post.title}
-                postDate={post.createdAt}
-                key={post._id}
-                id={post._id}
-                autor={post.autor}
-              />
-            ))
+            <>
+              <div className="grid items-center justify-center grid-cols-1 mt-24 md:grid-cols-2 xl:grid-cols-3 xl:mx-auto">
+                {posts.map((post) => (
+                  <BlogCard
+                    img={post.imageUrl}
+                    title={post.title}
+                    postDate={post.createdAt}
+                    key={post._id}
+                    id={post._id}
+                    autor={post.autor}
+                  />
+                ))}
+              </div>
+              <div className=" flex justify-center gap-8">
+                <button onClick={() => setPage(page - 1)} disabled={page <= 1}>
+                  <IoIosArrowDropleft size={40} />
+                </button>
+                <button
+                  onClick={() => setPage(page + 1)}
+                  disabled={posts.length < limit}
+                  className="hover:text-gray-600"
+                >
+                  <IoIosArrowDropright size={40} />
+                </button>
+              </div>
+            </>
           ) : (
-            <p>cargando...</p>
+            <p>Cargando...</p>
           )}
         </div>
       </div>

@@ -3,10 +3,28 @@ import Card from "../components/Card";
 import caracteristicas from "../utils/CardData";
 import videos from "../utils/VideoData";
 import Video from "../components/Video";
+import { useEffect, useState } from "react";
+import { getPostPaginated } from "../services/PostService";
+import { useNavigate } from "react-router-dom";
 const Home = () => {
+  const [posts, setPosts] = useState();
+  const page = 1;
+  const limit = 4;
+  useEffect(() => {
+    getPostPaginated(page, limit).then((posts) => {
+      setPosts(posts);
+    });
+  }, [page]);
+
+  const navigate = useNavigate();
+
+  const handleShowDetails = (num) => {
+    navigate(`/blog/${num}`);
+  };
+
   return (
     <>
-      <div
+      <section
         className="flex flex-col justify-center items-center w-[100%] h-[80vh]"
         style={{ backgroundImage: `url(${hero})` }}
       >
@@ -15,12 +33,12 @@ const Home = () => {
         </h1>
         <div className="bg-[#1AB6EF] w-[200px] lg:w-[300px] mt-3 h-[5px] lg:h-[10px]"></div>
         <h1 className="text-xl font-semibold">Tecnología que cuida de ti</h1>
-      </div>
-      <div className="pt-8 mx-auto ">
+      </section>
+      <section className="pt-8 mx-auto font-montserrat">
         <h1 className="text-2xl py-8 px-3 mt-4 font-bold mx-auto w-[100%] lg:text-4xl lg:w-[100vh]">
           Conéctate a la calma, transforma tu bienestar
         </h1>
-        <p className="line-height px-3 w-[100%] lg:w-[100vh] mx-auto">
+        <p className="line-height px-3 w-[100%] lg:w-[100vh] mx-auto ">
           Bienvenido a Tranquiliza 360°<br></br>
           <br></br> Explora una nueva forma de bienestar a través de
           experiencias inmersivas diseñadas para cuidar de ti. Nuestra
@@ -36,8 +54,8 @@ const Home = () => {
           <br></br>
           Tu viaje hacia la calma empieza aquí.
         </p>
-      </div>
-      <div className="h-[700px] section-carrusel w-[100%] flex justify-center items-center">
+      </section>
+      <section className="h-[700px] section-carrusel w-[100%] flex justify-center items-center font-montserrat">
         <div className="overflow-hidden carrusel w-[100vh]">
           <div className="flex animate-scroll">
             {caracteristicas.map((card) => (
@@ -45,8 +63,8 @@ const Home = () => {
             ))}
           </div>
         </div>
-      </div>
-      <div className="flex flex-col items-center justify-center">
+      </section>
+      <section className="flex flex-col items-center justify-center font-montserrat">
         <h1 className="mt-4 text-4xl font-bold text-center">
           Mejora tu mente desde donde estés.
         </h1>
@@ -67,7 +85,39 @@ const Home = () => {
             ))}
           </div>
         </div>
-      </div>
+      </section>
+
+      <section className="flex flex-col items-center justify-center font-montserrat">
+        <h1 className="text-center text-4xl font-bold">
+          Descubre nuestras novedades más recientes
+        </h1>
+        <div className="grid items-center justify-center grid-cols-1 my-8 md:grid-cols-2 xl:grid-cols-4 gap-4 xl:mx-auto">
+          {posts &&
+            posts.map((post, i) => (
+              <div
+                key={i}
+                className="relative w-[250px] h-[250px] mb-10 rounded-lg overflow-hidden cursor-pointer"
+                onClick={() => handleShowDetails(post._id)}
+              >
+                <img
+                  src={post.imageUrl}
+                  alt={post.title}
+                  className="w-full h-full object-cover"
+                />
+
+                <div className="absolute bottom-0 left-0 w-full h-full bg-gradient-trasparent">
+                  <h2 className="text-white absolute bottom-4 text-sm px-1">
+                    {post.title}
+                  </h2>
+                  <p className="text-gray-200 absolute bottom-0 text-xs px-2">
+                    {post.autor} -
+                    {new Date(post.createdAt).toLocaleDateString("es-ES")}
+                  </p>
+                </div>
+              </div>
+            ))}
+        </div>
+      </section>
     </>
   );
 };

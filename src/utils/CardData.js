@@ -1,6 +1,7 @@
 import est_cognitiva from "../assets/est_cognitiva.png";
 import exp_imn from "../assets/exp_inmersivas.png";
 import val_cientifica from "../assets/val_cientifica.png";
+import rv_convocatoria_memoria from "../assets/rv_convocatoria_memoria.png";
 const caracteristicas = [
   {
     title: "Experiencias Inmersivas",
@@ -22,7 +23,7 @@ const caracteristicas = [
   },
   {
     title: "Experiencias personalizadas",
-    img: "",
+    img: rv_convocatoria_memoria,
     description:
       "Preparamos experiencias recreativas basasas en tus preferencias.",
   },

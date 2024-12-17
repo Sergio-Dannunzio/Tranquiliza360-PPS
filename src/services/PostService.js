@@ -11,6 +11,18 @@ export const getPost = async () => {
   }
 };
 
+export const getPostPaginated = async (page, limit) => {
+  try {
+    const response = await fetch(
+      `${API_URL}/posts/paginated?page=${page}&limit=${limit}`
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+  }
+};
+
 export const postPost = async (formData) => {
   console.log(...formData.entries());
   try {

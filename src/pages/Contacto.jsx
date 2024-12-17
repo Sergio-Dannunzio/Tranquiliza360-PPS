@@ -21,7 +21,7 @@ const Contacto = () => {
 
   return (
     <>
-      <div className="contacto mx-auto flex flex-col text-left w-full px-4 md:px-0">
+      <div className="contacto mx-auto flex flex-col text-left w-full px-4 md:px-0 font-montserrat">
         <div className="w-full md:w-[80%] lg:w-[60%] mx-auto text-center md:text-left">
           <h1 className="text-3xl sm:text-4xl  md:text-5xl lg:text-[60px] mt-20 md:mt-20 text-[#2D5677] font-bold">
             Contacta con nosotros.
