@@ -15,7 +15,7 @@
 .nav-bg-menu {
   background: rgba(45, 86, 119, 1);
 }
-.section-carrusel {
+.bg-geadiant-acento {
   background: rgb(255, 255, 255);
   background: linear-gradient(
     180deg,
@@ -52,17 +52,6 @@
 
 .animate-scroll:hover {
   animation-play-state: paused;
-}
-
-.contacto {
-  background: rgb(255, 255, 255);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 248, 230, 1) 25%,
-    rgba(255, 245, 217, 1) 75%,
-    rgba(255, 255, 255, 1) 100%
-  );
 }
 
 .no-scrollbar::-webkit-scrollbar {

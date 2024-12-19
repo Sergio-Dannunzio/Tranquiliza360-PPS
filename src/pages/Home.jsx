@@ -55,7 +55,7 @@ const Home = () => {
           Tu viaje hacia la calma empieza aquí.
         </p>
       </section>
-      <section className="h-[700px] section-carrusel w-[100%] flex justify-center items-center font-montserrat">
+      <section className="h-[700px] bg-geadiant-acento w-[100%] flex justify-center items-center font-montserrat">
         <div className="overflow-hidden carrusel w-[100vh]">
           <div className="flex animate-scroll">
             {caracteristicas.map((card) => (

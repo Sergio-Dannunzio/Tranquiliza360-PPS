@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { ImCross } from "react-icons/im";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-const EditarPost = ({ updatePost, post, setEdit }) => {
+const EditarPost = ({ updatePost, post, setEdit, setPopupMessage }) => {
   const [title, setTitle] = useState(post.title);
   const [autor, setAutor] = useState(post.autor);
   const [content, setContent] = useState(post.content);
@@ -16,7 +17,11 @@ const EditarPost = ({ updatePost, post, setEdit }) => {
     if (image) {
       formData.append("image", image);
     }
-    updatePost(post._id, formData);
+    const response = await updatePost(post._id, formData);
+    if (response.ok) {
+      setEdit(false);
+      setPopupMessage("Successfully updated");
+    }
   };
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 ">
@@ -26,7 +31,7 @@ const EditarPost = ({ updatePost, post, setEdit }) => {
           onClick={() => setEdit(false)}
           className="absolute right-4 top-4 text-gray-600 hover:text-red-500"
         >
-          cancelar
+          <ImCross />
         </button>
         <form onSubmit={handleSubmit} className="w-full">
           <div>

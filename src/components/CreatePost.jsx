@@ -1,14 +1,17 @@
 import React, { useState } from "react";
+import { ImCross } from "react-icons/im";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-const CreatePost = ({ postPost, setCreate }) => {
+import Loading from "./Loading";
+const CreatePost = ({ postPost, setCreate, setPopupMessage }) => {
   const [title, setTitle] = useState("");
   const [autor, setAutor] = useState("");
   const [content, setContent] = useState("");
   const [image, setImage] = useState(null);
+  const [loading, setLoading] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
@@ -16,8 +19,17 @@ const CreatePost = ({ postPost, setCreate }) => {
     if (image) {
       formData.append("image", image);
     }
+
     try {
-      postPost(formData);
+      const response = await postPost(formData);
+      console.log("Respuesta del API:", response);
+      if (response.ok) {
+        setCreate(false);
+        setPopupMessage("se creo un nuevo post");
+        console.log("Post creado exitosamente:", response.post);
+      } else {
+        console.error("Error al crear el post:", response.message);
+      }
     } catch (error) {
       console.error("Error al crear el post:", error);
     }
@@ -29,7 +41,7 @@ const CreatePost = ({ postPost, setCreate }) => {
           onClick={() => setCreate(false)}
           className="absolute right-4 top-4 text-gray-600 hover:text-red-500"
         >
-          cancelar
+          <ImCross />
         </button>
         <h1 className="text-2xl font-bold mb-4">Crear un nuevo post</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -84,6 +96,16 @@ const CreatePost = ({ postPost, setCreate }) => {
           </button>
         </form>
       </div>
+      {loading && (
+        <div className="flex absolute items-center justify-center mx-auto ">
+          <div className="flex flex-col items-center">
+            <div className="w-12 h-12 border-4 border-blue-500 border-dotted rounded-full animate-spin"></div>
+            <p className="mt-4 text-lg font-medium text-gray-700 animate-pulse">
+              Cargando...
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

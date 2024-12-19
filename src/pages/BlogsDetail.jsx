@@ -32,7 +32,7 @@ const BlogsDetail = () => {
     return <p>Cargando...</p>;
   }
   return (
-    <div className="section-carrusel px-4 font-montserrat">
+    <div className="bg-geadiant-acento px-4 font-montserrat">
       <div className=" flex flex-col justify-center w-full lg:w-[100vh] py-28 mx-auto ">
         <h1 className="text-3xl py-2 font-bold">{post.title}</h1>
         <h1 className="py-6">

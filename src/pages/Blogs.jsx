@@ -7,6 +7,7 @@ import {
   getPostPaginated,
 } from "../services/PostService";
 import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
+import Loading from "../components/Loading";
 
 const Blogs = () => {
   const [latestPost, setLatestPost] = useState();
@@ -40,7 +41,6 @@ const Blogs = () => {
     getPostPaginated(page, limit).then((posts) => {
       setPosts(posts);
     });
-    console.log(posts);
     getLatestPost().then((post) => {
       setLatestPost(post);
     });
@@ -48,9 +48,9 @@ const Blogs = () => {
 
   return (
     <>
-      <div className="flex flex-col  justify-center w-full font-montserrat">
-        <div className="section-carrusel">
-          {latestPost && (
+      <div className="flex flex-col  justify-center w-full font-montserrat mb-20">
+        <div className="bg-geadiant-acento">
+          {latestPost ? (
             <div
               onClick={() => handleShowDetails(latestPost._id)}
               className=" relative flex flex-col mx-2 my-32 cursor-pointer md:mx-10 lg:mx-52 xl:mx-80"
@@ -58,17 +58,21 @@ const Blogs = () => {
               <img
                 src={latestPost.imageUrl}
                 alt={latestPost.title}
-                className="2xl:h-[700px]  object-fit"
+                className="2xl:h-[700px]  object-fit aspect-video"
               />
               <div className="bg-gradient-trasparent h-40 absolute  bottom-0 left-0 w-full">
-                <h1 className="text-[#ffffff] absolute top-12  text-3xl ">
-                  {latestPost.title}
-                </h1>
-                <p className=" text-[#C6C6C6] absolute bottom-2 text-xl ">
-                  {formattedDate} - {latestPost.autor}
-                </p>
+                <div className="absolute bottom-0 flex flex-col gap-4">
+                  <h1 className="text-[#ffffff] text-3xl lg:tracking-wide">
+                    {latestPost.title}
+                  </h1>
+                  <p className=" text-[#C6C6C6] text-xl lg:tracking-wide">
+                    {formattedDate} - {latestPost.autor}
+                  </p>
+                </div>
               </div>
             </div>
+          ) : (
+            <Loading />
           )}
         </div>
         <div className="flex flex-col items-center">
@@ -86,6 +90,7 @@ const Blogs = () => {
                   />
                 ))}
               </div>
+
               <div className=" flex justify-center gap-8">
                 <button onClick={() => setPage(page - 1)} disabled={page <= 1}>
                   <IoIosArrowDropleft size={40} />
@@ -100,7 +105,7 @@ const Blogs = () => {
               </div>
             </>
           ) : (
-            <p>Cargando...</p>
+            <Loading />
           )}
         </div>
       </div>

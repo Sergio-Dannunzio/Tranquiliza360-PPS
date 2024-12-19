@@ -38,7 +38,7 @@ const BlogCard = ({ img, title, postDate, id, autor }) => {
             alt={title}
             className="object-cover w-[368px] h-[285px]"
           />
-          <div className="bg-gradient-trasparent text-[#ffff] w-full absolute text-xl h-20 text-left bottom-9 mx-2 ">
+          <div className="bg-gradient-trasparent text-[#ffff] w-full absolute text-xl h-20 px-2 text-left bottom-9 mx-2 ">
             <h1>{title}</h1>
           </div>
           <hr className="border-[#1C374D] w-full my-2" />

@@ -30,20 +30,13 @@ export const postPost = async (formData) => {
       method: "POST",
       body: formData,
     });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    console.log("Post response data:", data);
-    return data;
+    return response;
   } catch (err) {
     console.error("Error posting post:", err);
   }
 };
 
-export const getLatestPost = async (userId) => {
+export const getLatestPost = async () => {
   try {
     const response = await fetch(`${API_URL}/posts/latest-post`);
     const data = await response.json();
@@ -62,7 +55,6 @@ export const deletePost = async (id) => {
         //Authorization: `Bearer ${localStorage.getItem("token")}`, // Incluye el token si es necesario
       },
     });
-    console.log(response);
     return response;
   } catch (err) {
     console.error("Error deleting post:", err);
@@ -70,19 +62,12 @@ export const deletePost = async (id) => {
 };
 
 export const updatePost = async (id, formData) => {
-  console.log(...formData.entries());
   try {
     const response = await fetch(`${API_URL}/posts/${id}`, {
       method: "PUT",
       body: formData,
     });
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    console.log("Post response data:", data);
-    return data;
+    return response;
   } catch (err) {
     console.error("Error posting post:", err);
   }

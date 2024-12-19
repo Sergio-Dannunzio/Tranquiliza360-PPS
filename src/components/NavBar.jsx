@@ -119,6 +119,14 @@ const NavBar = () => {
                 Iniciar sesión
               </NavLink>
             )}
+            {isAuthenticated && (
+              <button
+                onClick={handleLogout}
+                className="p-4 text-2xl underline hover:text-gray-800"
+              >
+                Log out
+              </button>
+            )}
           </div>
         ) : null}
       </div>
