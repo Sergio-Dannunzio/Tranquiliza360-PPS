@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-
+import emailjs from "@emailjs/browser";
 const Contacto = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    subject: "",
+    numero: "",
     message: "",
   });
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -15,8 +17,32 @@ const Contacto = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log("Formulario enviado:", formData);
+    setLoading(true);
+    emailjs
+      .send(
+        "service_tve2nrj",
+        "template_m9hsmtd",
+        {
+          name: formData.name,
+          email: formData.email,
+          numero: formData.numero,
+          message: formData.message,
+        },
+        "MbiAbGPFHhaTGc8nN"
+      )
+      .then(
+        (response) => {
+          setLoading(false);
+          setMessage("formulario enviado con exito");
+          setFormData({ name: "", email: "", numero: "", message: "" });
+        },
+        (error) => {
+          setMessage("error enviando el formulario");
+          setLoading(false);
+          console.error("Error al enviar el correo:", error);
+          alert("Hubo un error al enviar el correo.");
+        }
+      );
   };
 
   return (
@@ -66,9 +92,9 @@ const Contacto = () => {
               <input
                 placeholder="Teléfono de contacto"
                 type="text"
-                id="subject"
-                name="subject"
-                value={formData.subject}
+                id="numero"
+                name="numero"
+                value={formData.numero}
                 onChange={handleChange}
                 className="w-full px-4 py-2 h-12 sm:h-14 border border-[#2D5677] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
@@ -93,6 +119,22 @@ const Contacto = () => {
             </button>
           </form>
         </div>
+        {loading && (
+          <div className="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-50"></div>
+        )}
+        {message && (
+          <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
+            <div className="bg-white p-4 rounded-md shadow-md text-center">
+              <p className="text-lg">{message}</p>
+              <button
+                onClick={() => setMessage("")}
+                className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
