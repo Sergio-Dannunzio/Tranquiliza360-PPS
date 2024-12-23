@@ -9,7 +9,7 @@ import CreatePost from "../components/CreatePost";
 import EditarPost from "../components/EditarPost";
 import { CiSquarePlus } from "react-icons/ci";
 import Loading from "../components/Loading";
-const AministrarBlog = () => {
+const AdministrarBlog = () => {
   const [posts, setPosts] = useState();
   const [edit, setEdit] = useState(false);
   const [editPost, setEditPost] = useState();
@@ -132,4 +132,4 @@ const AministrarBlog = () => {
   );
 };
 
-export default AministrarBlog;
+export default AdministrarBlog;

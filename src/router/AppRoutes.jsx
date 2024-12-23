@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import Home from "../pages/Home";
 import Blogs from "../pages/Blogs";
-import AministrarBlog from "../pages/AministrarBlog";
+import AdministrarBlog from "../pages/AdministrarBlog";
 import Contacto from "../pages/Contacto";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
@@ -43,9 +43,12 @@ function AppRoutes() {
         <Route path="/home" element={<Home />} />
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/blog" element={<Blogs />} />
-        <Route path="/blog/:id" element={<BlogsDetail />} />
+        <Route
+          path="/blog/:id"
+          element={<BlogsDetail key={location.pathname} />}
+        />
         <Route element={<PrivateRoute />}>
-          <Route path="/admin" element={<AministrarBlog />} />
+          <Route path="/admin" element={<AdministrarBlog />} />
         </Route>
       </Routes>
       {shouldShowHeaderFooter() && <Footer />}
