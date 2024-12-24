@@ -9,14 +9,17 @@ import CreatePost from "../components/CreatePost";
 import EditarPost from "../components/EditarPost";
 import { CiSquarePlus } from "react-icons/ci";
 import Loading from "../components/Loading";
+import EliminarPost from "../components/EliminarPost";
 const AdministrarBlog = () => {
   const [posts, setPosts] = useState();
   const [edit, setEdit] = useState(false);
   const [editPost, setEditPost] = useState();
   const [create, setCreate] = useState(false);
+  const [deletePop, setDelete] = useState(false);
+  const [deletePostIntend, setDeletePost] = useState();
   const [popupMessage, setPopupMessage] = useState("");
 
-  const handleDelete = async (id) => {
+  /*const handleDelete = async (id) => {
     try {
       const response = await deletePost(id);
       if (response.ok) {
@@ -28,6 +31,11 @@ const AdministrarBlog = () => {
     } catch (e) {
       console.error("Error al eliminar el post:", e);
     }
+  };*/
+
+  const handleDelete = (post) => {
+    setDeletePost(post);
+    setDelete(true);
   };
 
   const handleUpdate = (post) => {
@@ -71,7 +79,7 @@ const AdministrarBlog = () => {
               </p>
               <div>
                 <button
-                  onClick={() => handleDelete(post._id)}
+                  onClick={() => handleDelete(post)}
                   className="px-4 m-2 py-2 text-white bg-red-500 hover:bg-red-600 rounded-md"
                 >
                   eliminar
@@ -96,6 +104,15 @@ const AdministrarBlog = () => {
         </div>
       ) : (
         <Loading />
+      )}
+
+      {deletePop && (
+        <EliminarPost
+          deletePost={deletePost}
+          post={deletePostIntend}
+          setDelete={setDelete}
+          setPopupMessage={setPopupMessage}
+        />
       )}
 
       {edit && (
