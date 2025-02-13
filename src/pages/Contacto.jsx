@@ -20,15 +20,15 @@ const Contacto = () => {
     setLoading(true);
     emailjs
       .send(
-        "service_tve2nrj",
-        "template_m9hsmtd",
+        "service_aeykmpu",
+        "template_05j4e9e",
         {
           name: formData.name,
           email: formData.email,
           numero: formData.numero,
           message: formData.message,
         },
-        "MbiAbGPFHhaTGc8nN"
+        "04Ec3nW48x13_hsE7"
       )
       .then(
         (response) => {
