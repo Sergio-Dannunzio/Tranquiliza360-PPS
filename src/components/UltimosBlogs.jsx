@@ -21,7 +21,7 @@ const UltimosBlogs = () => {
   return (
     <section className="flex flex-col items-center justify-center font-montserrat">
       <h1 className="text-center text-4xl font-bold">
-        Descubre nuestras novedades más recientes
+        Descubre momentos que renuevan tu calma
       </h1>
       {/* Contenedor principal adaptativo */}
       <div className="my-8 w-full overflow-x-auto lg:w-[120vh]">

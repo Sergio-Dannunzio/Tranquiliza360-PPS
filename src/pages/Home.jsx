@@ -49,12 +49,13 @@ const Home = () => {
       </section>
       <section className="flex flex-col items-center justify-center font-montserrat">
         <h1 className="mt-4 text-4xl font-bold text-center">
-          Mejora tu mente desde donde estés.
+          Armoniza tu mente desde cualquier lugar
         </h1>
         <p className="text-center text-xl py-6 w-[100%] lg:w-[100vh]">
-          Descubre experiencias únicas: relájate con paisajes increíbles desde
-          casa, explora una ciudad lejana o entrena en un entorno virtual
-          interactivo.
+          Sumérgete en espacios virtuales que invitan a la calma. Disfruta
+          paisajes envolventes para relajarte, viaja tranquilamente por ciudades
+          remotas o entrena suavemente tu mente en ambientes virtuales diseñados
+          especialmente para ti.
         </p>
         <div className="w-full overflow-x-scroll no-scrollbar ">
           <div className="flex flex-row  mx-auto justify-between py-12 px-10 gap-7 w-[100vh]">
