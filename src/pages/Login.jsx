@@ -86,8 +86,8 @@ const Login = () => {
           <a href="" className="w-full mb-2 font-bold text-center xl:text-left">
             ¿Olvidaste tu contraseña?
           </a>
-          <a href="/register" className="w-full font-bold text-center xl:text-left">
-            ¿No tienes cuenta? Registrate
+          <a href="/" className="w-full font-bold text-center xl:text-left">
+            ¿No tienes cuenta? Volver
           </a>
         </div>
         </form>
