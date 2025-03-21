@@ -58,7 +58,7 @@ const Home = () => {
           especialmente para ti.
         </p>
         <div className="w-full overflow-x-scroll no-scrollbar ">
-          <div className="flex flex-row  mx-auto justify-between py-12 px-10 gap-7 w-[100vh]">
+          <div className="flex flex-row  mx-auto justify-between py-12 px-10 gap-7 w-[100vh] lg:w-[1000px] xl:w-[1200px]">
             {videos.map((video, i) => (
               <Video
                 key={i}
