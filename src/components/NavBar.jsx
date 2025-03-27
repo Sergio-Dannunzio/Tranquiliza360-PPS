@@ -81,7 +81,7 @@ const NavBar = () => {
         </button>
         {showMenu ? (
           <div
-            className={`flex flex-col text-white  items-end gap-10 nav-bg-menu absolute left-[100%] top-16 w-[170px] h-[100vh] shadow-md ${
+            className={`flex flex-col text-white  items-end gap-10 nav-bg-menu absolute left-[100%] top-16 w-[200px] h-[100vh] shadow-md ${
               showMenu ? "translate-x-[-100%]" : ""
             }`}
           >
