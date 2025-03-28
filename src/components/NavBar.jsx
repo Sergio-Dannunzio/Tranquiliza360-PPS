@@ -3,6 +3,11 @@ import plademaimglogo from "../assets/pladema.png";
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import { FaCog, FaHome } from "react-icons/fa";
+import { IoIosContacts } from "react-icons/io";
+import { FaRegNewspaper } from "react-icons/fa6";
+import { AiOutlineUser } from "react-icons/ai";
+import { BiUserMinus } from "react-icons/bi";
 
 const NavBar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -81,50 +86,56 @@ const NavBar = () => {
         </button>
         {showMenu ? (
           <div
-            className={`flex flex-col text-white  items-end gap-10 nav-bg-menu absolute left-[100%] top-16 w-[200px] h-[100vh] shadow-md ${
+            className={`flex flex-col text-white text-left  gap-10 nav-bg-menu absolute left-[100%] top-16 w-[200px] h-[100vh] shadow-md ${
               showMenu ? "translate-x-[-100%]" : ""
             }`}
           >
             <NavLink
               to="/"
-              className="p-4 underline text-2xl hover:text-gray-800"
+              className="p-4 underline text-2xl hover:text-gray-800 flex items-center justify-between"
             >
               Home
+              <FaHome size={30} />
             </NavLink>
             <NavLink
               to="/contacto"
-              className="p-4 text-2xl underline hover:text-gray-800"
+              className="p-4 text-2xl underline hover:text-gray-800 flex items-center justify-between"
             >
               Contacto
+              <IoIosContacts size={30} />
             </NavLink>
             <NavLink
               to="/blog"
-              className="p-4 underline text-2xl hover:text-gray-800"
+              className="p-4 underline text-2xl hover:text-gray-800 flex items-center justify-between"
             >
               Blogs
+              <FaRegNewspaper size={30} />
             </NavLink>
             {isAuthenticated && (
               <NavLink
                 to="/admin"
-                className="p-4 underline text-2xl hover:text-gray-800"
+                className="p-4 underline text-2xl hover:text-gray-800 flex items-center justify-between"
               >
-                Admin
+                Administrar
+                <FaCog size={30} />
               </NavLink>
             )}
             {!isAuthenticated && (
               <NavLink
                 to="/login"
-                className="p-4 text-2xl underline hover:text-gray-800"
+                className="p-4 text-2xl underline hover:text-gray-800 flex items-center justify-between"
               >
                 Iniciar sesión
+                <AiOutlineUser size={30} />
               </NavLink>
             )}
             {isAuthenticated && (
               <button
                 onClick={handleLogout}
-                className="p-4 text-2xl underline hover:text-gray-800"
+                className="p-4 text-2xl underline hover:text-gray-800 flex items-center justify-between"
               >
                 Log out
+                <BiUserMinus size={30} />
               </button>
             )}
           </div>
